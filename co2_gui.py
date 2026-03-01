@@ -247,8 +247,8 @@ class CO2HeatPumpApp(tk.Tk):
                 label="Cycle", zorder=5)
         # Annotate states
         offsets = [(-15, -18), (10, 8), (-15, 8), (10, -18)]
-        for i, (lbl, xo, yo) in enumerate(
-                zip(["1", "2", "3", "4"], *zip(*offsets))):
+        for i, (lbl, (xo, yo)) in enumerate(
+                zip(["1", "2", "3", "4"], offsets)):
             ax.annotate(lbl, (h_pts[i], P_pts[i]),
                         textcoords="offset points", xytext=(xo, yo),
                         fontsize=11, fontweight="bold",
@@ -281,8 +281,8 @@ class CO2HeatPumpApp(tk.Tk):
         # Cycle
         ax2.plot(s_cycle, T_cycle, "ko-", linewidth=2, markersize=7,
                  label="Cycle", zorder=5)
-        for i, (lbl, xo, yo) in enumerate(
-                zip(["1", "2", "3", "4"], *zip(*offsets))):
+        for i, (lbl, (xo, yo)) in enumerate(
+                zip(["1", "2", "3", "4"], offsets)):
             ax2.annotate(lbl, (s_pts[i], T_pts[i]),
                          textcoords="offset points", xytext=(xo, yo),
                          fontsize=11, fontweight="bold",

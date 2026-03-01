@@ -139,7 +139,8 @@ def compute_compressor_metrics(cycle, displacement_m3h, stroke_volume_m3):
     displacement_m3h : float
         Volumetric displacement of the compressor in m³/h.
     stroke_volume_m3 : float
-        Volume of a single stroke in m³ (there are 4 strokes per revolution).
+        Volume of a single stroke in m³.  The compressor has 4 cylinders,
+        so total swept volume per revolution is ``stroke_volume_m3 * 4``.
 
     Returns
     -------
@@ -154,10 +155,10 @@ def compute_compressor_metrics(cycle, displacement_m3h, stroke_volume_m3):
     vol_flow_m3s = displacement_m3h / 3600.0  # m³/h -> m³/s
     mass_flow = vol_flow_m3s * rho_suction  # kg/s
 
-    # RPM: displacement / (stroke_volume * number_of_strokes_per_rev)
-    n_strokes = 4
+    # RPM: displacement / (stroke_volume * number_of_cylinders)
+    n_cylinders = 4
     if stroke_volume_m3 > 0:
-        rpm = displacement_m3h / (stroke_volume_m3 * n_strokes * 60)
+        rpm = displacement_m3h / (stroke_volume_m3 * n_cylinders * 60)
     else:
         rpm = 0.0
 
